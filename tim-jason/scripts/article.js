@@ -48,16 +48,30 @@ Article.fetchAll = () => {
   // REVIEW: What is this 'if' statement checking for? Where was the rawData set to local storage?
   if (localStorage.rawData) {
 
-    Article.loadAll(); //Make sure to pass in the correct argument to Article.loadAll() and render the index page.
+    Article.loadAll(JSON.parse(localStorage.rawData)); //Make sure to pass in the correct argument to Article.loadAll() and render the index page.
+    articleView.initIndexPage();
 
   } else {
-    let articleGrab = $.getJSON('data/hackerIpsum.json')
-     
-      .then( data => articleView.initIndexPage(data.results) )
-      .catch( err => console.error('Error', err) );
+      let url = "../data/hackerIpsum.json";
+      $.getJSON(url)
+        .then( data => {
+          localStorage.setItem('rawData', JSON.stringify(data));
+          Article.loadAll(data);
+          articleView.initIndexPage();
 
-      console.log(articleGrab);
+      }).catch( err => console.error('Error', err) );
+        
 
-    console.log('JSON rendered');
   }
+
 }
+
+// Article.fetchAll();
+// let articleGrab = $.getJSON('../data/hackerIpsum.json')
+ 
+//   .then( data => articleView.initIndexPage(data.results) )
+//   .catch( err => console.error('Error', err) );
+
+//   console.log(articleGrab);
+
+// console.log('JSON rendered');
