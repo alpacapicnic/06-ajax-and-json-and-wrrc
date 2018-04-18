@@ -1,7 +1,7 @@
 # Kilovolt blog
 
 **Author**: Tim & Jason
-**Version**: 5.0.0 (increment the patch/fix version number up if you make more commits past your first submission)
+**Version**: 5.0.1 (increment the patch/fix version number up if you make more commits past your first submission)
 
 ## Overview
 This is a blog that takes JSON data (locally but simulating remotely), fetches and parses into the appropriate html fields
